@@ -13,6 +13,7 @@ var router = express.Router();
 // router.get('/:id', auth.isAuthenticated(), controller.show);
 
 router.get('/', controller.test);
+//注册
 router.post('/', controller.create);
 
 

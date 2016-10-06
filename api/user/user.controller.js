@@ -25,5 +25,5 @@ exports.create = function (req, res, next) {
 };
 
 exports.test = function (req, res) {
-  res.json('chenhao');
+  res.json('user');
 }
