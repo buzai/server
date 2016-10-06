@@ -1,6 +1,6 @@
 'use strict';
 
-var Apply = require('./apply.model');
+var Apply = require('./shop.model');
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -9,7 +9,7 @@ var validationError = function(res, err) {
 /**
  */
 exports.test = function (req, res) {
-  res.json('apply');
+  res.json('shop');
 }
 
 exports.create = function (req, res) {
