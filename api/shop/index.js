@@ -9,6 +9,8 @@ var router = express.Router();
 router.get('/', controller.test);
 router.post('/', controller.create);
 
+router.post('/baseinfo', controller.baseinfo)
+var path = require("path");
 
 
 module.exports = router;

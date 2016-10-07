@@ -29,7 +29,18 @@ module.exports = function(app) {
   app.use(cookieParser());
   app.use(passport.initialize());
 
+  app.all('*',function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
+    if (req.method == 'OPTIONS') {
+      res.send(200); /让options请求快速返回/
+    }
+    else {
+      next();
+    }
+  });
   
 //   if ('production' === env) {
 //     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
@@ -41,8 +52,11 @@ module.exports = function(app) {
 //   if ('development' === env || 'test' === env) {
     app.use(require('connect-livereload')());
     // app.use(express.static(path.join(config.root, '.tmp')));
-    // app.use(express.static(path.join(config.root, 'client')));
-    app.set('appPath', path.join('/../../', 'src'));
+    app.use(express.static(path.normalize(__dirname+'/../public')));
+
+    console.log(path.normalize(__dirname+'/../public'))
+
+    app.set('appPath', path.join('/../', 'src'));
     app.use(morgan('dev'));
     app.use(errorHandler()); // Error handler - has to be last
 //   }
