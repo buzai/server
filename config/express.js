@@ -53,6 +53,7 @@ module.exports = function(app) {
     app.use(require('connect-livereload')());
     // app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.normalize(__dirname+'/../public')));
+    app.use(express.static(path.normalize(__dirname+'/../src')));
 
     console.log(path.normalize(__dirname+'/../public'))
 

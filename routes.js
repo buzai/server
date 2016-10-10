@@ -26,5 +26,6 @@ module.exports = function(app) {
   app.route('/*')
     .get(function(req, res) {
       res.sendFile(path.normalize(__dirname+'/src') + '/index.html');
+      // res.render('index.html');
     });
 };

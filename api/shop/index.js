@@ -10,6 +10,17 @@ router.get('/', controller.test);
 router.post('/', controller.create);
 
 router.post('/baseinfo', controller.baseinfo)
+
+//获取未审核企业
+router.get('/getNotVerifyShops',  controller.getNotVerifyShops);
+
+router.get('/getShopByQuery',  controller.getShopByQuery);
+
+router.post('/keyUsers', controller.keyUsers);
+
+router.get('/getShopsById', controller.getShopsById);
+
+
 var path = require("path");
 
 

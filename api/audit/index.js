@@ -7,8 +7,11 @@ var controller = require('./audit.controller');
 var router = express.Router();
 
 router.get('/', controller.test);
-router.post('/', controller.verify);
+// 提交信息，创建验证对象
+router.post('/verifyDataSubmitting', controller.verifyDataSubmitting);
+// 分步骤验证
+router.post('/stepVerify', controller.stepVerify);
 
-
-
+// 获取审核未通过企业
+// 通知企业
 module.exports = router;

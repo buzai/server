@@ -19,8 +19,29 @@ exports.create = function (req, res, next) {
   newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
+    console.log('no error')
+
+
+    console.log(user._id)
+    console.log(config.secrets.session)
+    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 18000 });
+    console.log(token)
     res.json({ token: token });
+  });
+};
+
+/**
+ * Get my info
+ */
+exports.me = function(req, res, next) {
+  console.log('user-me')
+  var userId = req.user._id;
+  User.findOne({
+    _id: userId
+  }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
+    if (err) return next(err);
+    if (!user) return res.status(401).send('Unauthorized');
+    res.json(user);
   });
 };
 
