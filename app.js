@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Start server
-server.listen(8080, '127.0.0.1', function () {
+server.listen(8080, 'localhost', function () {
   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
 });
 
