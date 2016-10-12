@@ -47,6 +47,8 @@ exports.getShopsById = function (req, res) {
 }
 
 exports.getShopsByuserId = function (req, res) {
+
+    console.log('getShopsByuserId')
     console.log(req.query.id)
 
 
@@ -154,10 +156,12 @@ exports.keyUsers = function (req, res) {
   console.log(req.body)
 
   var ziduan = req.body.ziduan;
-     
+  var shopId = req.body.shopId;
+
+
  if(ziduan==='keyUsers'){
     Shop.findByIdAndUpdate(
-    req.body.applyId,
+    shopId,
     {$push: { keyUsers: req.body.data }},
     {safe: true, upsert: true, new : true},
     function(err, instance) {
@@ -169,7 +173,7 @@ exports.keyUsers = function (req, res) {
  }
  else if(ziduan === 'carSalesTable'){
     Shop.findByIdAndUpdate(
-    req.body.applyId,
+    shopId,
     {$push: { carSalesTable: req.body.data }},
     {safe: true, upsert: true, new : true},
     function(err, instance) {
@@ -181,7 +185,7 @@ exports.keyUsers = function (req, res) {
   }
  else if(ziduan === 'nocarSalesTable'){
     Shop.findByIdAndUpdate(
-    req.body.applyId,
+    shopId,
     {$push: { nocarSalesTable: req.body.data }},
     {safe: true, upsert: true, new : true},
     function(err, instance) {
@@ -193,7 +197,7 @@ exports.keyUsers = function (req, res) {
   }
  else if(ziduan === 'repairStatusTable'){
     Shop.findByIdAndUpdate(
-    req.body.applyId,
+    shopId,
     {$push: { repairStatusTable: req.body.data }},
     {safe: true, upsert: true, new : true},
     function(err, instance) {
@@ -205,7 +209,7 @@ exports.keyUsers = function (req, res) {
   }
  else if(ziduan === 'financeStatusTable'){
     Shop.findByIdAndUpdate(
-    req.body.applyId,
+    shopId,
     {$push: { financeStatusTable: req.body.data }},
     {safe: true, upsert: true, new : true},
     function(err, instance) {
