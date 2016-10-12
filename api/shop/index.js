@@ -20,6 +20,8 @@ router.post('/keyUsers', controller.keyUsers);
 
 router.get('/getShopsById', controller.getShopsById);
 
+router.get('/getShopsByuserId', controller.getShopsByuserId);
+
 
 var path = require("path");
 

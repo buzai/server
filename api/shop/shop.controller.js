@@ -45,7 +45,34 @@ exports.getShopsById = function (req, res) {
 
 
 }
+
+exports.getShopsByuserId = function (req, res) {
+    console.log(req.query.id)
+
+
+    Shop.find({shopApplyUserId:req.query.id},function(err, shop){
+      console.log(shop[0])
+      res.json(shop[0]);
+    })
+
+
+}
+
 exports.baseinfo = function (req, res) {
+
+  
+  Shop.find({shopApplyUserId:req.body.shopApplyUserId},function(err, shop){
+    if (err) return validationError(res, err);
+
+    console.log(shop[0])
+    
+
+    if(shop[0]) {
+      res.json(shop[0]);
+    }
+  }
+  
+  )
 
   console.log(req.body)
   req.body.isVerify = false;

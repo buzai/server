@@ -29,14 +29,17 @@ exports.verifyDataSubmitting = function (req, res) {
     newApply.save(function(err, apply) {
 
       if (err) console.log(err);
+        console.log('-----------------------------')
 
       console.log(apply);
+              console.log('-----------------------------')
+
       console.log(req.body.shopId)
       Shop.findById(req.body.shopId, function (err, shop) {
-        console.log(shop)
         shop.applyId = apply._id;
         shop.save(function (err) {
         if (err) console.log(err);
+        console.log('-----------------------------')
         console.log(apply)
           return res.status(200).json(apply);
         });
