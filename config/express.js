@@ -19,7 +19,7 @@ var passport = require('passport');
 module.exports = function(app) {
   var env = app.get('env');
 
-  app.set('views', config.root + '/server/views');
+  // app.set('views', config.root + '/server/views');
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
   app.use(compression());
@@ -50,14 +50,18 @@ module.exports = function(app) {
 //   }
 
 //   if ('development' === env || 'test' === env) {
-    app.use(require('connect-livereload')());
+    // app.use(require('connect-livereload')());
     // app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.normalize(__dirname+'/../public')));
-    app.use(express.static(path.normalize(__dirname+'/../src')));
+    app.use(express.static(path.normalize(__dirname+'/../admin')));
+    app.use(express.static(path.normalize(__dirname+'/../agent')));
+    app.use(express.static(path.normalize(__dirname+'/../desuser')));
+    // app.use(express.static(path.normalize(__dirname+'/../src')));
 
     console.log(path.normalize(__dirname+'/../public'))
 
-    app.set('appPath', path.join('/../', 'src'));
+    // app.set('appPath', path.join('/../', 'src'));
+    
     app.use(morgan('dev'));
     app.use(errorHandler()); // Error handler - has to be last
 //   }

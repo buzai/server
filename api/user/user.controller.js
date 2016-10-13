@@ -14,19 +14,16 @@ var validationError = function(res, err) {
  */
 exports.create = function (req, res, next) {
   console.log(req.body)
+
   var newUser = new User(req.body);
   newUser.provider = 'local';
-  newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
-    console.log('no error')
+    console.log(user)
 
-
-    console.log(user._id)
-    console.log(config.secrets.session)
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 18000 });
     console.log(token)
-    res.json({ token: token });
+    res.json({token: token,role:user.role});
   });
 };
 
