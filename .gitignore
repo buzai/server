@@ -1,7 +1,6 @@
 node_modules
-public
+public/bower_components
 src
 agent
 admin
-index
 desuser
