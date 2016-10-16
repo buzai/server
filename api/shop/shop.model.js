@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');   //自增ID 模块
-    autoIncrement.initialize(mongoose.connection);  
+    autoIncrement.initialize(mongoose.connection);
 var shopSchema = new Schema({
   companyName: String,
   carBrand: String,
@@ -32,7 +32,27 @@ var shopSchema = new Schema({
   nocarSalesTable:[{}],
   repairStatusTable:[{}],
   financeStatusTable:[{}],
-  notverify : Boolean //某个步骤被拒绝
+  notverify : Boolean, //某个步骤被拒绝
+
+
+
+  basic:{},
+  SharesConstitute:[{}],
+  users:[{}],
+  carShareholder:[{}],
+  notcarShareholder:[{}],
+  maintenance:[{}],
+  CSmessage:{},
+  bss:{},
+  BSbusinessArea:[{}],
+  BSSdatum:{},
+  newCP:{},
+  funding:{},
+  StoreConstructionPlan:[{}],
+  keyJob:[{}],
+  SchemaArrange:{},
+  MFAform:{}
+
 
 });
 shopSchema.pre('save', function (next) {

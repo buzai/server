@@ -61,27 +61,30 @@ exports.getShopsByuserId = function (req, res) {
 }
 
 exports.baseinfo = function (req, res) {
+  console.log('1================================================~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
 
-  
-  Shop.find({shopApplyUserId:req.body.shopApplyUserId},function(err, shop){
-    if (err) return validationError(res, err);
-
-    console.log(shop[0])
-    
-
-    if(shop[0]) {
-      res.json(shop[0]);
-    }
-  }
-  
-  )
-
+  console.log(req.body);
+  // Shop.find({shopApplyUserId:req.body.shopApplyUserId},function(err, shop){
+  //   if (err) return validationError(res, err);
+  //
+  //   console.log(shop[0])
+  //
+  //
+  //   if(shop[0]) {
+  //     res.json(shop[0]);
+  //   }
+  // }
+  //
+  // )
+  console.log('2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
   console.log(req.body)
   req.body.isVerify = false;
   req.body.wait_to_cheack = true;
   var newShop = new Shop(req.body)
   newShop.save(function(err, shop) {
     if (err) return validationError(res, err);
+    console.log('3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+
     console.log(shop)
     res.json(shop);
   });
@@ -107,7 +110,9 @@ exports.baseinfo = function (req, res) {
 
 //{"applyId":{"$exists":"true"}} 没有审核过的和进行到哪一步的可以继续进行的
 exports.getNotVerifyShops = function (req, res) {
-  console.log(typeof(req.query.notverify))
+
+  console.log('================================');
+  console.log(req.query.notverify)
 
   var query = false;
   if(req.query.notverify==='false'){
@@ -115,11 +120,11 @@ exports.getNotVerifyShops = function (req, res) {
   }else {
      query = true;
   }
-  
+
     Shop
     .find({ isVerify : false, applyId:{$exists:true}, notverify:{ $exists:query } })
     .populate('applyId')
-    .populate('shopApplyUserId')  
+    .populate('shopApplyUserId')
     .exec(function (err, shop) {
       if(err) { return handleError(res, shop); }
       // if(!product) { return res.status(404).send('Not Found'); }
@@ -127,13 +132,14 @@ exports.getNotVerifyShops = function (req, res) {
       //       console.log(newproduct)
 
       // return res.json(newproduct);
-      // console.log(shop)
+      console.log(shop);
+      console.log('----------------------------------------');
       res.status(200).json(shop);
     });
 }
 
 exports.getShopByQuery = function (req, res) {
-  
+
     console.log(req.query)
     var query = req.query;
     if(query.isVerify==='true'){
@@ -142,8 +148,8 @@ exports.getShopByQuery = function (req, res) {
     console.log(query)
     Shop
     .find( query )
-    .populate('applyId')  
-    .populate('shopApplyUserId')  
+    .populate('applyId')
+    .populate('shopApplyUserId')
     .exec(function (err, shop) {
       if(err) { return handleError(res, shop); }
       res.status(200).json(shop);
@@ -221,4 +227,3 @@ exports.keyUsers = function (req, res) {
   }
 
  }
-
