@@ -301,7 +301,7 @@ angular.module("app",["ui.bootstrap", "angularFileUpload",  'ngResource',  'ngCo
                   .then( function(data) {
                     console.log(data)
                       token = data.token;
-                      var role = 'user';
+                      var role = data.role;
                       console.log(role)
                       if(role==='user'){
                         console.log('usersssss')
