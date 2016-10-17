@@ -2,7 +2,7 @@
 var muilterUtil = require('./multerUtil');
 var Apply = require('../audit/apply.model');
 var Designs = require('./designs.model');
-
+var Shop_des_apply = require('./shop_des_apply.model')
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -24,3 +24,14 @@ exports.designs = function (req, res) {
     res.json(des);
   })
 };
+
+// shopId  desId  new relation
+exports.verify = function (req, res) {
+
+  console.log(req.body);
+  res.json('ok')
+  // var relation = new shop_des_apply(req.body);
+  // relation.save(function(rel){
+  //   res.json(rel)
+  // })
+}

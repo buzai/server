@@ -4,10 +4,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var designsSchema = new Schema({
-  companyName: String,
   shopId: { type: Schema.Types.ObjectId, ref: 'shop'}, // 申请流程对象id
-  designId: { type: Schema.Types.ObjectId, ref: 'shop'} //设计公司id
-
+  designId: { type: Schema.Types.ObjectId, ref: 'designs'}, //设计公司id
+  vertify:[{}],
+  content:String,
+  meta: {
+      createAt: {
+          type: Date,
+          default: Date.now()
+      },
+      updateAt: {
+          type: Date,
+          default: Date.now()
+      }
+  }
 });
 designsSchema.pre('save', function (next) {
     if (this.isNew) {

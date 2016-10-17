@@ -10,7 +10,7 @@ router.get('/', controller.test);
 router.post('/', controller.create);
 
 router.post('/baseinfo', controller.baseinfo)
-
+router.get('/updateBaseinfo', controller.updateBaseinfo)
 //获取未审核企业
 router.get('/getNotVerifyShops',  controller.getNotVerifyShops);
 

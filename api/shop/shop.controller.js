@@ -2,6 +2,7 @@
 var muilterUtil = require('./multerUtil');
 var Apply = require('../audit/apply.model');
 var Shop = require('./shop.model');
+var _ = require('lodash');
 
 
 var validationError = function(res, err) {
@@ -108,6 +109,31 @@ exports.baseinfo = function (req, res) {
 
 }
 
+
+
+
+exports.updateBaseinfo = function (req, res) {
+
+  console.log(req.body.shopId);
+
+  Shop.findById(req.body.shopId, function (err, shop) {
+    console.log('findshop');
+    if (err) { console.log(err); }
+    if(!shop) { console.log('notfind'); }
+
+    var updated = _.merge(shop, req.body.baseinfo);
+
+    updated.save(function (err) {
+      if (err) { console.log(err);}
+      return res.status(200).json(updated);
+    });
+
+  });
+
+}
+
+
+
 //{"applyId":{"$exists":"true"}} 没有审核过的和进行到哪一步的可以继续进行的
 exports.getNotVerifyShops = function (req, res) {
 
@@ -151,6 +177,7 @@ exports.getShopByQuery = function (req, res) {
     .populate('applyId')
     .populate('shopApplyUserId')
     .exec(function (err, shop) {
+      console.log(shop);
       if(err) { return handleError(res, shop); }
       res.status(200).json(shop);
     });

@@ -15,6 +15,7 @@ var shopSchema = new Schema({
   afterSale: String,
   applyId: { type: Schema.Types.ObjectId, ref: 'apply'}, // 申请流程对象id
   shopApplyUserId: { type: Schema.Types.ObjectId, ref: 'User'}, // 申请入网人的id
+  designsShopRelation: { type: Schema.Types.ObjectId, ref: 'designsShopRelation'}, // 审核关系id
   isVerify : Boolean,//是否完全审核完成
   wait_to_cheack: Boolean,//第一步是否审核
   meta: {
