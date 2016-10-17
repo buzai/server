@@ -49,6 +49,7 @@ var router = express.Router();
 // router.get('/', controller.test);
 router.get('/', controller.designs);
 router.post('/verify', controller.verify);
-
+router.get('/getShopsInit', controller.getShopsInit);
+router.post('/stepVerify', controller.stepVerify);
 
 module.exports = router;

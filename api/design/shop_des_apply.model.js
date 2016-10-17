@@ -8,6 +8,7 @@ var designsSchema = new Schema({
   designId: { type: Schema.Types.ObjectId, ref: 'designs'}, //设计公司id
   vertify:[{}],
   content:String,
+  shopApplyUserId: { type: Schema.Types.ObjectId, ref: 'User'}, // 申请入网人的id
   meta: {
       createAt: {
           type: Date,
@@ -17,7 +18,8 @@ var designsSchema = new Schema({
           type: Date,
           default: Date.now()
       }
-  }
+  },
+  isTiJiaoChuGao:Boolean
 });
 designsSchema.pre('save', function (next) {
     if (this.isNew) {

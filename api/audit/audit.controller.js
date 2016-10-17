@@ -12,7 +12,12 @@ exports.test = function (req, res) {
   res.json('audit');
 }
 
-
+exports.getApplyById = function (req, res) {
+  // IDEA:
+  Apply.findById(req.query.id, function (err, apply) {
+    res.json(apply);
+  })
+}
 
 exports.verifyDataSubmitting = function (req, res) {
 
@@ -21,7 +26,7 @@ exports.verifyDataSubmitting = function (req, res) {
       bool:true,
       verifyDataSubmitting:'资料已提交'
     }];
-    
+
 
     var newApply = new Apply(req.body)
 
@@ -84,7 +89,7 @@ exports.stepVerify = function (req, res) {
         if (err) console.log(err);
         });
       })
-  } 
+  }
   if(req.body.isVerify){
     console.log('isVerify')
       Shop.findById(req.body.shopId, function (err, shop) {
@@ -93,7 +98,7 @@ exports.stepVerify = function (req, res) {
         if (err) console.log(err);
         });
       })
-  } 
+  }
   Apply.findByIdAndUpdate(
   req.body.applyId,
   {$push: { verify: req.body.verify }},
@@ -106,4 +111,3 @@ exports.stepVerify = function (req, res) {
   );
 
 }
-

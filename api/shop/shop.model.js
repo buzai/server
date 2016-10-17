@@ -52,8 +52,10 @@ var shopSchema = new Schema({
   StoreConstructionPlan:[{}],
   keyJob:[{}],
   SchemaArrange:{},
-  MFAform:{}
+  MFAform:{},
 
+  isTiJiaoChuGao:Boolean,
+  Shop_des_apply:  { type: Schema.Types.ObjectId, ref: 'designsShopRelation'} //关联
 
 });
 shopSchema.pre('save', function (next) {

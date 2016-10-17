@@ -123,14 +123,50 @@ exports.updateBaseinfo = function (req, res) {
 
     var updated = _.merge(shop, req.body.baseinfo);
 
-    updated.save(function (err) {
-      if (err) { console.log(err);}
-      return res.status(200).json(updated);
-    });
+    updated.markModified('MFAform');
+    updated.markModified('SchemaArrange');
+    updated.markModified('keyJob');
+    updated.markModified('StoreConstructionPlan');
+    updated.markModified('funding');
+    updated.markModified('newCP');
+    updated.markModified('BSSdatum');
+    updated.markModified('BSbusinessArea');
+    updated.markModified('bss');
+    updated.markModified('CSmessage');
+    updated.markModified('maintenance');
+    updated.markModified('notcarShareholder');
+    updated.markModified('carShareholder');
+    updated.markModified('users');
+    updated.markModified('SharesConstitute');
+    updated.markModified('basic');
+    updated.markModified('notverify');
+    updated.markModified('financeStatusTable');
+    updated.markModified('repairStatusTable');
+    updated.markModified('nocarSalesTable');
+    updated.markModified('carSalesTable');
+    updated.markModified('keyUsers');
 
+    updated.save(function (err,data) {
+
+      if (err) { console.log(err);}
+
+      return res.json(data);
+
+    });
   });
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -176,8 +212,9 @@ exports.getShopByQuery = function (req, res) {
     .find( query )
     .populate('applyId')
     .populate('shopApplyUserId')
+    .populate('Shop_des_apply')
     .exec(function (err, shop) {
-      console.log(shop);
+      // console.log(shop);
       if(err) { return handleError(res, shop); }
       res.status(200).json(shop);
     });

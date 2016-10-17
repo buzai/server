@@ -12,6 +12,10 @@ router.post('/verifyDataSubmitting', controller.verifyDataSubmitting);
 // 分步骤验证
 router.post('/stepVerify', controller.stepVerify);
 
+
+
+router.get('/getApplyById', controller.getApplyById);
+
 // 获取审核未通过企业
 // 通知企业
 module.exports = router;
