@@ -13,10 +13,11 @@ var shopSchema = new Schema({
   shopNumber: String,
   sellSuffer: String,
   afterSale: String,
+  verifyDataSubmitting:  {type: Boolean, default: false},
   applyId: { type: Schema.Types.ObjectId, ref: 'apply'}, // 申请流程对象id
   shopApplyUserId: { type: Schema.Types.ObjectId, ref: 'User'}, // 申请入网人的id
   designsShopRelation: { type: Schema.Types.ObjectId, ref: 'designsShopRelation'}, // 审核关系id
-  isVerify : Boolean,//是否完全审核完成
+  isVerify : {type: Boolean, default: false},//是否完全审核完成
   wait_to_cheack: Boolean,//第一步是否审核
   meta: {
       createAt: {
@@ -33,7 +34,7 @@ var shopSchema = new Schema({
   nocarSalesTable:[{}],
   repairStatusTable:[{}],
   financeStatusTable:[{}],
-  notverify : Boolean, //某个步骤被拒绝
+  notverify : {type: Boolean, default: false}, //某个步骤被拒绝
 
 
 

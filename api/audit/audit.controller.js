@@ -42,6 +42,7 @@ exports.verifyDataSubmitting = function (req, res) {
       console.log(req.body.shopId)
       Shop.findById(req.body.shopId, function (err, shop) {
         shop.applyId = apply._id;
+        shop.verifyDataSubmitting = true;
         shop.save(function (err) {
         if (err) console.log(err);
         console.log('-----------------------------')
