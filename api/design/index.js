@@ -11,7 +11,10 @@ Designs.find({},function (err,des) {
   if(des===null){
 
     var _des = {
-      companyName:"天海设计商"
+      companyName:"天海设计商",
+      person: '陈浩',
+      successNum: 2,
+      phone: '13165508732'
     }
     var newdes = new Designs(_des);
 
@@ -21,7 +24,10 @@ Designs.find({},function (err,des) {
     })
 
     var _des1 = {
-      companyName:"天空设计商"
+      companyName:"天空设计商",
+      person: '陈浩',
+      successNum: 2,
+      phone: '13165508732'
     }
     var newdes1 = new Designs(_des1);
 
@@ -31,7 +37,10 @@ Designs.find({},function (err,des) {
     })
 
     var _des2 = {
-      companyName:"海天设计商"
+      companyName:"海天设计商",
+      person: '陈浩',
+      successNum: 2,
+      phone: '13165508732'
     }
     var newdes2 = new Designs(_des2);
 

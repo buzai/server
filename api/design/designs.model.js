@@ -5,6 +5,9 @@ var Schema = mongoose.Schema;
 
 var designsSchema = new Schema({
   companyName: String,
+  person: String,
+  successNum: Number,
+  phone: String,
   meta: {
       createAt: {
           type: Date,
