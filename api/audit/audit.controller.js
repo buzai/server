@@ -86,6 +86,7 @@ exports.stepVerify = function (req, res) {
     console.log('notverify')
       Shop.findById(req.body.shopId, function (err, shop) {
         shop.notverify = true;
+        shop.verifyDataSubmitting = false;
         shop.save(function (err) {
         if (err) console.log(err);
         });
