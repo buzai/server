@@ -22,8 +22,8 @@ router.get('/getShopsById', controller.getShopsById);
 
 router.get('/getShopsByuserId', controller.getShopsByuserId);
 
+router.get('/getShopByState', controller.getShopByState);
 
-var path = require("path");
 
 
 module.exports = router;

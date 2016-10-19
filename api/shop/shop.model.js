@@ -49,7 +49,7 @@ var shopSchema = new Schema({
   BSbusinessArea:[{}],
   BSSdatum:{},
   newCP:{},
-  funding:{},
+  fundings:{},
   StoreConstructionPlan:[{}],
   keyJob:[{}],
   SchemaArrange:{},

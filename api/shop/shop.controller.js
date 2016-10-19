@@ -3,6 +3,8 @@ var muilterUtil = require('./multerUtil');
 var Apply = require('../audit/apply.model');
 var Shop = require('./shop.model');
 var _ = require('lodash');
+var async = require('async');
+
 
 
 var validationError = function(res, err) {
@@ -127,7 +129,7 @@ exports.updateBaseinfo = function (req, res) {
     updated.markModified('SchemaArrange');
     updated.markModified('keyJob');
     updated.markModified('StoreConstructionPlan');
-    updated.markModified('funding');
+    updated.markModified('fundings');
     updated.markModified('newCP');
     updated.markModified('BSSdatum');
     updated.markModified('BSbusinessArea');
@@ -200,6 +202,15 @@ exports.getNotVerifyShops = function (req, res) {
     });
 }
 
+// async.filter(arr, function(item, callback) {
+//     log('1.1 enter: ' + item);
+//     setTimeout(function() {
+//         log('1.1 test: ' + item);
+//         callback(item>=3);
+//     }, 200);
+// }, function(results) {
+//     log('1.1 results: ', results);
+// });
 exports.getShopByQuery = function (req, res) {
 
     console.log(req.query)
@@ -207,6 +218,8 @@ exports.getShopByQuery = function (req, res) {
     if(query.isVerify==='true'){
      query = { isVerify : true, applyId:{$exists:true}, notverify:{ $exists:false } }
     }
+
+
     console.log(query)
     Shop
     .find( query )
@@ -216,9 +229,51 @@ exports.getShopByQuery = function (req, res) {
     .exec(function (err, shop) {
       // console.log(shop);
       if(err) { return handleError(res, shop); }
-      res.status(200).json(shop);
+
+      res.json(shop);
     });
 }
+
+
+
+
+
+exports.getShopByState = function (req, res) {
+
+    var query = req.query;
+
+    console.log('query');
+    console.log(query);
+
+    var num = Number(query.num);
+    console.log(num);
+
+    query = {verifyDataSubmitting:true};
+
+
+    console.log(query)
+    Shop
+    .find( query )
+    .populate('applyId')
+    .populate('shopApplyUserId')
+    .populate('Shop_des_apply')
+    .exec(function (err, shop) {
+      // console.log(shop);
+      if(err) { return handleError(res, shop); }
+
+        // var _shop = shop.toObject()
+      async.filter(shop, function (item, cb) {
+        cb(null,item.applyId.verify.length === num)
+      },
+        function (err,newshop) {
+          res.json(newshop);
+        }
+      )
+
+    });
+}
+
+
 
 
 exports.keyUsers = function (req, res) {

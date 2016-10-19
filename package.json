@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "async": "^2.1.2",
     "body-parser": "^1.15.2",
     "composable-middleware": "^0.3.0",
     "compression": "^1.6.2",
