@@ -35,7 +35,8 @@ var shopSchema = new Schema({
   repairStatusTable:[{}],
   financeStatusTable:[{}],
   notverify : {type: Boolean, default: false}, //某个步骤被拒绝
-
+  newEquityStructure:[{}],
+  nowBankDeposit:[{}],
 
 
   basic:{},

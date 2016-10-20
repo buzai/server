@@ -147,7 +147,8 @@ exports.updateBaseinfo = function (req, res) {
     updated.markModified('nocarSalesTable');
     updated.markModified('carSalesTable');
     updated.markModified('keyUsers');
-
+    updated.markModified('newEquityStructure');
+    updated.markModified('nowBankDeposit');
     updated.save(function (err,data) {
 
       if (err) { console.log(err);}
