@@ -216,9 +216,9 @@ exports.getShopByQuery = function (req, res) {
 
     console.log(req.query)
     var query = req.query;
-    if(query.isVerify==='true'){
-     query = { isVerify : true, applyId:{$exists:true}, notverify:{ $exists:false } }
-    }
+    // if(query.isVerify==='true'){
+    //  query = { isVerify : true, applyId:{$exists:true}, notverify:{ $exists:false } }
+    // }
 
 
     console.log(query)
@@ -230,7 +230,7 @@ exports.getShopByQuery = function (req, res) {
     .exec(function (err, shop) {
       // console.log(shop);
       if(err) { return handleError(res, shop); }
-
+      console.log(shop);
       res.json(shop);
     });
 }
