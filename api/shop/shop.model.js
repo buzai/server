@@ -57,8 +57,9 @@ var shopSchema = new Schema({
   MFAform:{},
 
   isTiJiaoChuGao:Boolean,
-  Shop_des_apply:  { type: Schema.Types.ObjectId, ref: 'designsShopRelation'} //关联
+  Shop_des_apply:  { type: Schema.Types.ObjectId, ref: 'designsShopRelation'}, //关联
 
+  yanshouFile:String //验收申请文件名
 });
 shopSchema.pre('save', function (next) {
     if (this.isNew) {

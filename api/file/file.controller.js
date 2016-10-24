@@ -30,11 +30,11 @@ exports.updateFile = function (req, res) {
       return console.log(err)
     }
     console.log(req.body);
-    // return res.status(200).json(req.files[0].filename);
+    return res.status(200).json(req.files[0].filename);
 
-    console.log(req.files)
+    // console.log(req.files)
 
-    res.json('shop');
+    // res.json('shop');
   })
 
 
