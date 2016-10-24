@@ -59,7 +59,8 @@ var shopSchema = new Schema({
   isTiJiaoChuGao:Boolean,
   Shop_des_apply:  { type: Schema.Types.ObjectId, ref: 'designsShopRelation'}, //关联
 
-  yanshouFile:String //验收申请文件名
+  yanshouFile:String, //验收申请文件名.
+  organizationChart:String //组织架构文件名
 });
 shopSchema.pre('save', function (next) {
     if (this.isNew) {
