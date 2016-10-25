@@ -55,10 +55,18 @@ exports.getShopsByuserId = function (req, res) {
     console.log(req.query.id)
 
 
-    Shop.find({shopApplyUserId:req.query.id},function(err, shop){
-      console.log(shop[0])
-      res.json(shop[0]);
-    })
+    Shop
+
+    .find({shopApplyUserId:req.query.id})
+
+	.populate('applyId')
+	.exec(
+
+	  function(err, shop){
+	      res.json(shop[0]);
+	  }
+	)
+
 
 
 }
@@ -149,6 +157,17 @@ exports.updateBaseinfo = function (req, res) {
     updated.markModified('keyUsers');
     updated.markModified('newEquityStructure');
     updated.markModified('nowBankDeposit');
+    updated.markModified('jzcfhxFile');
+    updated.markModified('tdzFile');
+    updated.markModified('gjdFile');
+    updated.markModified('cdwbnbFile');
+    updated.markModified('ztjnbzpFile');
+    updated.markModified('njdfjjpwdFile');
+    updated.markModified('shwxpwdFile');
+
+
+
+
     updated.save(function (err,data) {
 
       if (err) { console.log(err);}
