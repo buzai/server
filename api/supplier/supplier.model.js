@@ -11,8 +11,13 @@ var SupplierSchema = new Schema({
   phone: String,
   email: { type: String, lowercase: true },
   status: {type: Boolean, default: true},
-  hashedPassword: String,
-  salt: String,
+  // hashedPassword: String,
+  // salt: String,
+  role: {
+    type: String,
+    default: 'gonguser'
+  },
+  number: {type: Number, default: 1},
   createAt: {type: Date,default: Date.now()},
   updateAt: {type: Date,default: Date.now()}
 });

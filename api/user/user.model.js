@@ -22,7 +22,22 @@ var UserSchema = new Schema({
   userInfo:[{}],
   hashedPassword: String,
   provider: String,
-  salt: String
+  salt: String,
+  // gonguser:{ type: Schema.Types.ObjectId, ref: 'supplier'};
+  gonguser: {
+      // companyName:String,
+      address:String,
+      ownName:String,
+      number: {type: Number, default: 1},
+  },
+  createAt: {
+      type: Date,
+      default: Date.now()
+  },
+  updateAt: {
+      type: Date,
+      default: Date.now()
+  }
 });
 
 /**

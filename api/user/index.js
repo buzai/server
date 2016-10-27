@@ -19,5 +19,11 @@ router.get('/', controller.test);
 router.post('/', controller.create);
 
 
+// 供应商角色
+router.get('/gong', auth.hasRole('admin'),controller.listGong);
+router.post('/gong', auth.hasRole('admin'),controller.create);
+router.get('/gong/:id', auth.hasRole('admin'),controller.show);
+// router.delete('/gong/:id', auth.hasRole('admin'),controller.delele);
+// router.put('/gong/:id', auth.hasRole('admin'), controller.update);
 
 module.exports = router;
