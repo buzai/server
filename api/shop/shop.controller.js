@@ -164,6 +164,8 @@ exports.updateBaseinfo = function (req, res) {
     updated.markModified('ztjnbzpFile');
     updated.markModified('njdfjjpwdFile');
     updated.markModified('shwxpwdFile');
+    updated.markModified('organizationChart');
+
 
 
 
