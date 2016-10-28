@@ -20,10 +20,21 @@ router.post('/', controller.create);
 
 
 // 供应商角色
-router.get('/gong', auth.hasRole('admin'),controller.listGong);
+router.get('/gong', controller.listGong);
 router.post('/gong', auth.hasRole('admin'),controller.create);
 router.get('/gong/:id', auth.hasRole('admin'),controller.show);
+router.post('/gong/:id', auth.hasRole('admin'),controller.update);
+router.delete('/gong/:id', auth.hasRole('admin'), controller.destroy);
+
+
 // router.delete('/gong/:id', auth.hasRole('admin'),controller.delele);
 // router.put('/gong/:id', auth.hasRole('admin'), controller.update);
+
+//  代理商角色
+router.get('/dai', controller.listDai);
+router.get('/dai/:id', controller.show);
+
+router.post('/:id', controller.update);
+router.patch('/:id',controller.update);
 
 module.exports = router;

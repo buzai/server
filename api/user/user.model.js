@@ -28,7 +28,17 @@ var UserSchema = new Schema({
       // companyName:String,
       address:String,
       ownName:String,
-      number: {type: Number, default: 1},
+      number: {type: Number},
+      info:String,
+      code:String
+  },
+  user:{
+    isOptional:Boolean,
+    supplierName:String,
+    signingTime:Date,
+    agreementFile:String,
+    gonguser:{ type: Schema.Types.ObjectId, ref: 'User'}
+
   },
   createAt: {
       type: Date,

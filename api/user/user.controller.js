@@ -55,11 +55,19 @@ exports.listGong = function (req, res, next) {
     res.json(supplier);
   });
 };
+
+exports.listDai = function (req, res, next) {
+  console.log(req.body);
+  User.find({role:"user"},function(err, user) {
+    if (err) return validationError(res, err);
+    console.log(user);
+    res.json(user);
+  });
+};
+
 exports.delele = function (req, res, next) {
   console.log(req.body)
-
-  // var newSupplier = new Supplier(req.body);
-console.log("del-->>>"+req.body.id+"  _id:"+req.body._id);
+// console.log("del-->>>"+req.body.id+"  _id:"+req.body._id);
   User.remove(req.params.id,function(err, user) {
     if (err) return validationError(res, err);
     console.log(user);
@@ -70,7 +78,7 @@ console.log("del-->>>"+req.body.id+"  _id:"+req.body._id);
 // Get a single user
 exports.show = function(req, res) {
   User.findById(req.params.id, function (err, user) {
-    if(err) { return handleError(res, err); }
+    if(err) { return validationError(res, err); }
     if(!user) { return res.status(404).send('Not Found'); }
     return res.json(user);
   });
@@ -78,21 +86,47 @@ exports.show = function(req, res) {
 
 // Updates an existing user in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  req.body.uid = req.user.email; // id change on every login hence email is used
-  req.body.updated = Date.now();
 
+  if(req.body._id) { delete req.body._id; }
+  req.body.updateAt = new Date();
+
+
+ var obj = JSON.stringify(req.body);
+ console.log('EDit+====', obj);
   User.findById(req.params.id, function (err, user) {
-    if (err) { return handleError(res, err); }
+   if (err) { return validationError(res, err); }
+   if(!user) { return res.status(404).send('Not Found'); }
+   var updated = _.merge(user, req.body);
+   console.log('-----1------', updated);
+
+   User.update({_id:updated._id},updated, function(err) {
+     if (err) { return validationError(res, err); }
+     console.log("======save======="+user);
+     return res.status(200).json(user);
+   });
+ });
+
+
+};
+
+// Deletes a user from the DB.
+exports.destroy = function(req, res) {
+  User.findById(req.params.id, function (err, user) {
+    if(err) { return validationError(res, err); }
     if(!user) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(user, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.status(200).json(user);
+    user.remove(function(err) {
+      if(err) { return validationError(res, err); }
+      return res.status(204).send('No Content');
     });
   });
 };
 
+
 exports.test = function (req, res) {
+  res.json('user');
+}
+
+exports.updateUser = function (req, res) {
+  // User.findById(req.params.id,
   res.json('user');
 }

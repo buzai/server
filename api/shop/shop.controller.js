@@ -95,7 +95,6 @@ exports.baseinfo = function (req, res) {
   newShop.save(function(err, shop) {
     if (err) return validationError(res, err);
     console.log('3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-
     console.log(shop)
     res.json(shop);
   });
