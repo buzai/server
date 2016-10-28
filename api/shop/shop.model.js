@@ -67,7 +67,9 @@ var shopSchema = new Schema({
   cdwbnbFile:[{}],
   ztjnbzpFile:[{}],
   njdfjjpwdFile:[{}],
-  shwxpwdFile:[{}]
+  shwxpwdFile:[{}],
+  shenheshibaiFlag:  {type: Boolean, default: false}//审核未通过
+
 
 });
 shopSchema.pre('save', function (next) {

@@ -85,7 +85,7 @@ exports.stepVerify = function (req, res) {
   if(!req.body.verify.bool){
     console.log('notverify')
       Shop.findById(req.body.shopId, function (err, shop) {
-        shop.notverify = true;
+        shop.shenheshibaiFlag = true;
         shop.verifyDataSubmitting = false;
         shop.save(function (err) {
         if (err) console.log(err);
