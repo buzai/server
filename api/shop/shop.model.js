@@ -60,11 +60,7 @@ var shopSchema = new Schema({
   Shop_des_apply:  { type: Schema.Types.ObjectId, ref: 'designsShopRelation'}, //关联
 
   yanshouFile:String, //验收申请文件名.
-<<<<<<< HEAD
-  organizationChart:[{}], //组织架构文件名
-=======
   organizationChart:[{}],//组织架构文件名
->>>>>>> d481eb396583fe8d361eb0d559e4820c10efa6c4
   jzcfhxFile:[{}],
   tdzFile:[{}],
   gjdFile:[{}],
