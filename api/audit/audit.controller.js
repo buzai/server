@@ -28,7 +28,7 @@ exports.reVerifyDataSub = function (req,res) {
     shop.shenheshibaiFlag = false;
     shop.save(function (err) {
     if (err) console.log(err);
-    return res.status(200).json(apply);
+    return res.status(200).json(shop);
 
     })
   })
