@@ -19,7 +19,27 @@ exports.getApplyById = function (req, res) {
   })
 }
 
+
+
+exports.reVerifyDataSub = function (req,res) {
+
+  Shop.findById(req.body.shopId, function (err, shop) {
+    shop.verifyDataSubmitting = true;
+    shop.shenheshibaiFlag = false;
+    shop.save(function (err) {
+    if (err) console.log(err);
+    return res.status(200).json(apply);
+
+    })
+  })
+
+}
+
 exports.verifyDataSubmitting = function (req, res) {
+
+
+
+
 
     req.body.verify = [{
       step:1,
