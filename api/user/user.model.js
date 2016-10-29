@@ -23,23 +23,27 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
-  // gonguser:{ type: Schema.Types.ObjectId, ref: 'supplier'};
+
+//  --begin   后期请分别使用独立表存储
   gonguser: {
-      // companyName:String,
       address:String,
       ownName:String,
       number: {type: Number},
       info:String,
-      code:String
+      code:String,
+      status:[{}],
+
   },
   user:{
     isOptional:Boolean,
     supplierName:String,
     signingTime:Date,
     agreementFile:String,
-    gonguser:{ type: Schema.Types.ObjectId, ref: 'User'}
-
+    gonguser:{ type: Schema.Types.ObjectId, ref: 'User'},
+    status:[{}],  //  statusNum statusInfo statusFile
   },
+  //  --end
+
   createAt: {
       type: Date,
       default: Date.now()

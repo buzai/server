@@ -19,21 +19,23 @@ router.get('/', controller.test);
 router.post('/', controller.create);
 
 
-// 供应商角色
+// 网发角色
 router.get('/gong', controller.listGong);
 router.post('/gong', auth.hasRole('admin'),controller.create);
 router.get('/gong/:id', auth.hasRole('admin'),controller.show);
 router.post('/gong/:id', auth.hasRole('admin'),controller.update);
 router.delete('/gong/:id', auth.hasRole('admin'), controller.destroy);
 
+// 供应商接口
+router.get('/gong/contract/:id', controller.myContract);
 
-// router.delete('/gong/:id', auth.hasRole('admin'),controller.delele);
-// router.put('/gong/:id', auth.hasRole('admin'), controller.update);
+
 
 //  代理商角色
 router.get('/dai', controller.listDai);
 router.get('/dai/:id', controller.show);
 
+// 通用接口
 router.post('/:id', controller.update);
 router.patch('/:id',controller.update);
 
