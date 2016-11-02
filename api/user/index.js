@@ -34,6 +34,8 @@ router.get('/gong/contract/:id', controller.myContract);
 //  代理商角色
 router.get('/dai', controller.listDai);
 router.get('/dai/:id', controller.show);
+router.post('/dai/:id', auth.hasRole('admin'),controller.update);
+
 
 // 通用接口
 router.post('/:id', controller.update);

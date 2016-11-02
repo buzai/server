@@ -123,7 +123,7 @@ exports.destroy = function(req, res) {
 //  myContract  供应商接口
 
 exports.myContract = function (req, res, next) {
-  console.log("======"+JSON.stringify(req.body)+" "+req.params.id);
+  console.log("===???????==="+JSON.stringify(req.body)+" "+req.params.id);
   User.find({"user.gonguser":req.params.id,"user.isOptional":true},function(err, user) {
     if (err) return validationError(res, err);
     console.log(user);

@@ -33,6 +33,8 @@ var UserSchema = new Schema({
       code:String,
       status:[{}],
 
+      // status:Number,
+
   },
   user:{
     isOptional:Boolean,
@@ -40,7 +42,7 @@ var UserSchema = new Schema({
     signingTime:Date,
     agreementFile:String,
     gonguser:{ type: Schema.Types.ObjectId, ref: 'User'},
-    status:[{}],  //  statusNum statusInfo statusFile
+    status:[{statusNum:Number, statusInfo:String, statusFile:String}],  //  statusNum statusInfo statusFile
   },
   //  --end
 
