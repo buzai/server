@@ -7,8 +7,31 @@ var validationError = function(res, err) {
 };
 
 /**
+  * test 58187f6837b37777de73671c
  */
 exports.test = function (req, res) {
+  var id  = req.query.id;
+  console.log(typeof(id));
+  Apply.findById(id,function (err,apply) {
+    console.log(apply);
+    apply.markModified('verifyHistory');
+    apply.markModified('verify');
+    var a = apply.verify.slice(0,1)//需要保留的
+    var b = apply.verify.slice(1)//存储的历史
+    var c = apply.verifyHistory;
+    apply.verifyHistory = c.concat( b );
+    apply.verify = a;
+    apply.save(function (err,newApply) {
+      console.log(newApply);
+    })
+
+
+
+
+
+  })
+
+
   res.json('audit');
 }
 
@@ -103,14 +126,55 @@ exports.stepVerify = function (req, res) {
   console.log(req.body)
 
   if(!req.body.verify.bool){
+
+
+
+
     console.log('notverify')
-      Shop.findById(req.body.shopId, function (err, shop) {
-        shop.shenheshibaiFlag = true;
-        shop.verifyDataSubmitting = false;
-        shop.save(function (err) {
-        if (err) console.log(err);
-        });
-      })
+      Shop.findById(req.body.shopId,
+         function (err, shop) {
+                shop.shenheshibaiFlag = true;
+                shop.verifyDataSubmitting = false;
+                      shop.save(function (err) {
+                        //todo
+                        if (err) console.log(err);
+
+
+                        //更新审核数据
+                        Apply.findByIdAndUpdate(
+                        req.body.applyId,
+                        {$push: { verify: req.body.verify }},
+                        {safe: true, upsert: true, new : true},
+
+                        function (err,apply) {
+                          console.log(apply);
+                          apply.markModified('verifyHistory');
+                          apply.markModified('verify');
+                          var a = apply.verify.slice(0,1)//需要保留的
+                          console.log('aaa');
+                          console.log(a);
+                          var b = apply.verify.slice(1)//存储的历史
+                          console.log('bbb');
+                          console.log(b);
+                          var c = apply.verifyHistory;
+                          console.log('ccc');
+                          console.log(c);
+                          apply.verifyHistory = c.concat( b );
+                          apply.verify = a;
+                          apply.save(function (err,newApply) {
+                            console.log('~~~~~~');
+                            console.log(newApply);
+                            res.json('ok');
+                          })
+                        });
+                      })
+        }
+
+    );
+
+
+
+
   }
   if(req.body.isVerify){
     console.log('isVerify')
@@ -121,15 +185,19 @@ exports.stepVerify = function (req, res) {
         });
       })
   }
-  Apply.findByIdAndUpdate(
-  req.body.applyId,
-  {$push: { verify: req.body.verify }},
-  {safe: true, upsert: true, new : true},
-  function(err, instance) {
-    if (err) console.log(err);
-    console.log(instance)
-    res.json('ok');
-    }
-  );
+
+  if (req.body.verify.bool) {
+    Apply.findByIdAndUpdate(
+    req.body.applyId,
+    {$push: { verify: req.body.verify }},
+    {safe: true, upsert: true, new : true},
+    function(err, instance) {
+      if (err) console.log(err);
+      console.log(instance)
+      res.json('ok');
+      }
+    );
+  }
+
 
 }

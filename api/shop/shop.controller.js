@@ -12,7 +12,7 @@ var validationError = function(res, err) {
 };
 
 /**
- * test
+ * test 58187f6837b37777de73671c
  */
 exports.test = function (req, res) {
   res.json('shop');
@@ -179,6 +179,8 @@ exports.updateBaseinfo = function (req, res) {
   });
 
 }
+
+
 
 
 
