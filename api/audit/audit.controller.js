@@ -67,10 +67,10 @@ exports.verifyDataSubmitting = function (req, res) {
     req.body.verify = [{
       step:1,
       bool:true,
-      verifyDataSubmitting:'资料已提交',
-      verifyHistory: [{}]
+      verifyDataSubmitting:'资料已提交'
     }];
 
+    req.body.verifyHistory= [];
 
     var newApply = new Apply(req.body)
 
