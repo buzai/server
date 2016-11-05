@@ -8,8 +8,12 @@ var storage = multer.diskStorage({
 	},
 	 //给上传文件重命名，获取添加后缀名
 	  filename: function (req, file, cb) {
+
+
 	      var fileFormat = (file.originalname).split(".");
-	      cb(null, file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
+		  		  console.log('~~~~~~')
+		  		  console.log(fileFormat[0])
+	      cb(null, fileFormat[0] + '-' + file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
 	  }
 });
 

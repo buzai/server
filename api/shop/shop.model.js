@@ -68,7 +68,15 @@ var shopSchema = new Schema({
   ztjnbzpFile:[{}],
   njdfjjpwdFile:[{}],
   shwxpwdFile:[{}],
-  shenheshibaiFlag:  {type: Boolean, default: false}//审核未通过
+  shenheshibaiFlag:  {type: Boolean, default: false}, //审核未通过
+
+  baozhengjin:{
+      type:Number,
+      default:100000
+  },
+  baozhengjinDate:Date,
+  baozhengjinFlag: {type: Boolean, default: false}
+
 
 
 });

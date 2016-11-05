@@ -24,6 +24,9 @@ router.get('/getShopsByuserId', controller.getShopsByuserId);
 
 router.get('/getShopByState', controller.getShopByState);
 
+//设置保证金
+router.post('/baozhengjin', controller.baozhengjin);
+
 
 
 module.exports = router;

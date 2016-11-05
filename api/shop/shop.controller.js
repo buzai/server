@@ -74,6 +74,15 @@ exports.getShopsByuserId = function (req, res) {
 exports.baseinfo = function (req, res) {
   console.log('1================================================~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
 
+
+  // 前三位是城市区号后三位 http://101.201.81.214:8080/city/getAddress/getProvince
+  var code = 123;
+  // 第四位为1
+  // 第五位则是根据类型判断
+  // 第六七位则是由该城市内数量判断得到的
+
+
+
   console.log(req.body);
   // Shop.find({shopApplyUserId:req.body.shopApplyUserId},function(err, shop){
   //   if (err) return validationError(res, err);
@@ -296,6 +305,25 @@ exports.getShopByState = function (req, res) {
     });
 }
 
+
+// {shopId:'',baozhengjinDate:'',baozhengjinNum:999}
+//
+exports.baozhengjin = function (req, res) {
+
+  //   baozhengjin:number,
+  // baozhengjinDate:Date,
+  // baozhengjinFlag: {type: Boolean, default: false}
+
+  Shop.findById(req.body.shopId, function(err, shop){
+    if(err) { return handleError(res, shop); }
+    shop.baozhengjin = req.body.baozhengjinNum;
+    shop.baozhengjinDate = req.body.baozhengjinDate;
+    shop.baozhengjinFlag = true;
+    res.json(shop);
+  })
+
+
+}
 
 
 

@@ -42,7 +42,7 @@ var all = {
       }
     },
     //  uri: 'mongodb://127.0.0.1/car-dev',
-     uri: 'mongodb://114.55.249.44/car-dev',
+     uri: 'mongodb://114.55.249.44/car-dev-new',
     seedDB: true
   }
 };
