@@ -313,13 +313,16 @@ exports.baozhengjin = function (req, res) {
   //   baozhengjin:number,
   // baozhengjinDate:Date,
   // baozhengjinFlag: {type: Boolean, default: false}
-
+  console.log(req.body)
   Shop.findById(req.body.shopId, function(err, shop){
     if(err) { return handleError(res, shop); }
     shop.baozhengjin = req.body.baozhengjinNum;
     shop.baozhengjinDate = req.body.baozhengjinDate;
     shop.baozhengjinFlag = true;
-    res.json(shop);
+    shop.save(function(){
+      res.json(shop);
+    })
+    
   })
 
 
